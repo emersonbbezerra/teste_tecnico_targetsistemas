@@ -1,0 +1,1 @@
+export interface IMonthlyBilling { [key: string]: number; }

@@ -8,7 +8,7 @@ function isFibonacci(num: number): boolean {
     return b === num || num === 0;
 }
 
-const input = 21; // Pode ser qualquer número de entrada
+const input = 21; // Inclua aqui o número que deseja verificar
 if (isFibonacci(input)) {
     console.log(`${input} pertence à sequência de Fibonacci.`);
 } else {

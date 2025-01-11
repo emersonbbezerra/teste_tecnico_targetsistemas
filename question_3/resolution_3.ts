@@ -1,25 +1,23 @@
 import fs from 'fs';
+import { IDailyBilling } from './IDailyBilling';
 
-interface FaturamentoDiario {
-    dia: number;
-    valor: number;
-}
 
-const rawdata = fs.readFileSync('./data.json');
-const faturamento: FaturamentoDiario[] = JSON.parse(rawdata.toString());
 
-let menor = Infinity, maior = -Infinity, soma = 0, count = 0;
-faturamento.forEach(dia => {
-    if (dia.valor > 0) {
-        if (dia.valor < menor) menor = dia.valor;
-        if (dia.valor > maior) maior = dia.valor;
-        soma += dia.valor;
+const rawData = fs.readFileSync('./data.json');
+const billingData: IDailyBilling[] = JSON.parse(rawData.toString());
+
+let lowest = Infinity, highest = -Infinity, total = 0, count = 0;
+billingData.forEach(entry => {
+    if (entry.value > 0) {
+        if (entry.value < lowest) lowest = entry.value;
+        if (entry.value > highest) highest = entry.value;
+        total += entry.value;
         count++;
     }
 });
-const media = soma / count;
-const diasAcimaDaMedia = faturamento.filter(dia => dia.valor > media).length;
+const average = total / count;
+const daysAboveAverage = billingData.filter(entry => entry.value > average).length;
 
-console.log(`Menor valor: ${menor}`);
-console.log(`Maior valor: ${maior}`);
-console.log(`Dias com faturamento acima da média: ${diasAcimaDaMedia}`);
+console.log(`Lowest value: ${lowest}`);
+console.log(`Highest value: ${highest}`);
+console.log(`Days with billing above average: ${daysAboveAverage}`);

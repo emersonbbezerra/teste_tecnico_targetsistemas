@@ -1,4 +1,4 @@
 export interface IDailyBilling {
-    day: number;
-    value: number;
+    dia: number;
+    valor: number;
 }
